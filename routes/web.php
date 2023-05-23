@@ -22,7 +22,12 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['prefix' => 'admin'], function (){
+    Route::get('/home',[\App\Http\Controllers\MainController::class,'index'])->name('admin.home');
     Route::group(['prefix' => 'categories'], function () {
         Route::get('/',  [CategoryController::class,'index'])->name('admin.category.index');
     });
 });
+Route::get('/front', function (){
+   return view('front.front');
+});
+
