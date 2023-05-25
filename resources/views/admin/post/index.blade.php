@@ -53,7 +53,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Category</h1>
+                        <h1 class="m-0">post</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -68,7 +68,7 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <a href="{{route('admin.category.create')}}" class="btn btn-primary mb-3">Create Category</a>
+                <a href="{{route('admin.post.create')}}" class="btn btn-primary mb-3">Create post</a>
                 <div class="col-12 p-0">
                     <div class="card">
 
@@ -84,17 +84,17 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($categories as $category)
+                                @foreach($posts as $post)
                                     <tr>
-                                        <td>{{$category->id}}</td>
-                                        <td>{{$category->title}}</td>
-                                        <td><a href="{{route('admin.category.show', $category->id)}}"><i
+                                        <td>{{$post->id}}</td>
+                                        <td>{{$post->title}}</td>
+                                        <td><a href="{{route('admin.post.show', $post->id)}}"><i
                                                     class="fas fa-eye"></i></a></td>
                                         <td><a class="btn btn-success"
-                                               href="{{route('admin.category.edit', $category->id)}}"><i
+                                               href="{{route('admin.post.edit', $post->id)}}"><i
                                                     class="fas fa-edit"></i></a></td>
                                         <td>
-                                                                                            <form action="{{route('admin.category.destroy', $category->id)}}"
+                                                                                            <form action="{{route('admin.post.destroy', $post->id)}}"
                                                   method="POST">
                                                 @csrf
                                                 @method('DELETE')

@@ -24,6 +24,24 @@ Home
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.tag.index') }}"
+                       class="nav-link  {{Route::currentRouteName() == 'admin.tag.index' ? 'active-sidebar-link' : ''}}">
+                        <i class="nav-icon fas fa-tag"></i>
+                        <p>
+                            Tag
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.post.index') }}"
+                       class="nav-link  {{Route::currentRouteName() == 'admin.post.index' ? 'active-sidebar-link' : ''}}">
+                        <i class="nav-icon fas fa-poo-storm"></i>
+                        <p>
+                            Post
+                        </p>
+                    </a>
+                </li>
                 {{--                <li class="nav-item">--}}
                 {{--                    <a href="{{ route('admin.main') }}"--}}
                 {{--                       class="nav-link  {{Route::currentRouteName() == 'admin.main' ? 'active-sidebar-link' : ''}}">--}}

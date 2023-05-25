@@ -53,7 +53,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Category</h1>
+                        <h1 class="m-0">post</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -68,48 +68,26 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <a href="{{route('admin.category.create')}}" class="btn btn-primary mb-3">Create Category</a>
-                <div class="col-12 p-0">
-                    <div class="card">
-
-                        <div class="card-body table-responsive p-0">
-                            <table class="table table-hover text-nowrap">
-                                <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Title</th>
-                                    <th>View</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($categories as $category)
-                                    <tr>
-                                        <td>{{$category->id}}</td>
-                                        <td>{{$category->title}}</td>
-                                        <td><a href="{{route('admin.category.show', $category->id)}}"><i
-                                                    class="fas fa-eye"></i></a></td>
-                                        <td><a class="btn btn-success"
-                                               href="{{route('admin.category.edit', $category->id)}}"><i
-                                                    class="fas fa-edit"></i></a></td>
-                                        <td>
-                                                                                            <form action="{{route('admin.category.destroy', $category->id)}}"
-                                                  method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger"><i
-                                                        class="fas fa-trash"></i></button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+                <div class="card card-primary col-4">
+                    <form action="{{route('admin.post.store')}}" method="post">
+                        @csrf
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>post Title</label>
+                                <input type="text" name="title" class="form-control" placeholder="Enter title">
+                            </div>
                         </div>
-
-                    </div>
-
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Content</label>
+                                <textarea name="content" class="form-control"
+                                          placeholder="Enter description"></textarea>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </div>
+                    </form>
                 </div>
             </div><!-- /.container-fluid -->
         </section>
@@ -129,6 +107,8 @@
     </aside>
     <!-- /.control-sidebar -->
 </div>
+<!-- ./wrapper -->
+
 <!-- jQuery -->
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
 <!-- jQuery UI 1.11.4 -->
