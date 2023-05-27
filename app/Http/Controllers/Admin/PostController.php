@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Post\StoreRequest;
 use App\Http\Requests\Post\UpdateRequest;
+use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 
 class PostController extends Controller
 {
@@ -17,13 +19,21 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('admin.post.create');
+        $categories = Category::all();
+
+        $tags = Tag::all();
+
+        return view('admin.post.create', compact('categories','tags'));
     }
 
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
-        Post::firstOrCreate($data);
+        $tagIds = $data['tag_ids'];
+        unset($data['tag_ids']);
+
+        $post = Post::firstOrCreate($data);
+        $post->tags()->attach($tagIds);
         return redirect()->route('admin.post.index');
     }
 

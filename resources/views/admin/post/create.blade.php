@@ -84,6 +84,22 @@
                                           placeholder="Enter description"></textarea>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label>Select</label>
+                            <select class="form-control" name="category_id">
+                                @foreach($categories as $category)
+                                <option value="{{$category->id}}">{{$category->title}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Multiple</label>
+                            <select class="select2" name="tag_ids[]" multiple="multiple" data-placeholder="Select a State" style="width: 100%;" data-select2-id="23" tabindex="-1" aria-hidden="true">
+                                @foreach($tags as $tag)
+                                <option value="{{$tag->id}}">{{$tag->title}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Create</button>
                         </div>
