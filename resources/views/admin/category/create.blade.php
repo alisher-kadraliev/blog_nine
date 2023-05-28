@@ -75,6 +75,9 @@
                             <div class="form-group">
                                 <label>Category Title</label>
                                 <input type="text" name="title" class="form-control"  placeholder="Enter title">
+                                @error('title')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="card-footer">

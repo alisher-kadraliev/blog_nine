@@ -77,6 +77,39 @@
                                 <label>post Title</label>
                                 <input type="text" name="title" class="form-control"  placeholder="Enter title">
                             </div>
+                            <div class="form-group">
+                                <label>post Content</label>
+                                <textarea name="content" class="form-control"
+                                          placeholder="Enter content">{{old('content') ?? $post->content }}</textarea>
+                                @error('content')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label>Select Category</label>
+                                <select name="category_id" class="form-control">
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->id}}"
+                                            {{$category->id == $post->category_id ? 'selected' : ''}}>{{$category->title}}</option>
+                                    @endforeach
+                                </select>
+                                @error('category_id')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label>Select Tag</label>
+                                <select name="tag_ids[]" class="form-control select2" multiple="multiple" data-action="Select tag" style="width: 100%">
+                                    @foreach($tags as $tag)
+                                        <option
+                                            {{is_array($post->tags->pluck('id')->toArray()) && in_array($tag->id, $post->tags->pluck('id')->pluck('id')->toArray() ) ? 'selected' : ''}}
+                                            value="{{$tag->id}}">{{$tag->title}}</option>
+                                    @endforeach
+                                </select>
+                                @error('tag_ids[]')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Update</button>

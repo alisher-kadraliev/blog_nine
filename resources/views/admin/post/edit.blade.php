@@ -15,18 +15,18 @@
     <!-- Tempusdominus Bootstrap 4 -->
     <link rel="stylesheet"
           href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
-{{--    <!-- iCheck -->--}}
+    {{--    <!-- iCheck -->--}}
     <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
-{{--    <!-- JQVMap -->--}}
+    {{--    <!-- JQVMap -->--}}
     <link rel="stylesheet" href="{{ asset('plugins/jqvmap/jqvmap.min.css') }}">
-{{--    <!-- Theme style -->--}}
+    {{--    <!-- Theme style -->--}}
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-{{--    <!-- overlayScrollbars -->--}}
+    {{--    <!-- overlayScrollbars -->--}}
     <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
-{{--    <!-- Daterange picker -->--}}
+    {{--    <!-- Daterange picker -->--}}
     <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
-{{--    <!-- summernote -->--}}
+    {{--    <!-- summernote -->--}}
     <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -44,9 +44,9 @@
     </div>
     <!-- /.navbar -->
 
-    @include('admin.includes.sidebar')
+@include('admin.includes.sidebar')
 
-    <!-- Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
@@ -69,29 +69,52 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="card card-primary col-4">
-                    <form action="{{route('admin.post.update', $post->id)}}" method="post">
+                    <form action="{{route('admin.post.update', $post->id)}}" enctype="multipart/form-data" method="post">
                         @csrf
                         @method('patch')
                         <div class="card-body">
                             <div class="form-group">
                                 <label>post Title</label>
-                                <input type="text" name="title" class="form-control"  placeholder="Enter title"  value="{{ old('title') ?? $post->title }}">
+                                <input type="text" name="title" class="form-control" placeholder="Enter title"
+                                       value="{{ old('title') ?? $post->title }}">
                                 @error('title')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                        </div>
-                        <div class="card-body">
                             <div class="form-group">
                                 <label>post Content</label>
-                                <textarea name="content" class="form-control"  placeholder="Enter content">{{old('content') ?? $post->content }}</textarea>
+                                <textarea name="content" class="form-control"
+                                          placeholder="Enter content">{{old('content') ?? $post->content }}</textarea>
                                 @error('content')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
+                            <div class="form-group">
+                                <label>Select Category</label>
+                                <select name="category_id" class="form-control">
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->id}}"
+                                            {{$category->id == $post->category_id ? 'selected' : ''}}>{{$category->title}}</option>
+                                    @endforeach
+                                </select>
+                                @error('category_id')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label>Select Tag</label>
+                                <select name="tag_ids[]" class="form-control select2" multiple="multiple" data-action="Select tag" style="width: 100%">
+                                    @foreach($tags as $tag)
+                                        <option
+                                            {{is_array($post->tags->pluck('id')->toArray()) && in_array($tag->id, $post->tags->pluck('id')->pluck('id')->toArray() ) ? 'selected' : ''}}
+                                            value="{{$tag->id}}">{{$tag->title}}</option>
+                                    @endforeach
+                                </select>
+                                @error('tag_ids[]')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
-
-
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Update</button>
                         </div>

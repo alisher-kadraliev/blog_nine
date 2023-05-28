@@ -72,16 +72,23 @@
                     <form action="{{route('admin.post.store')}}" method="post">
                         @csrf
                         <div class="card-body">
+                        <div class="form-group">
                             <div class="form-group">
                                 <label>post Title</label>
                                 <input type="text" name="title" class="form-control" placeholder="Enter title">
+                                @error(  'title')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
-                        <div class="card-body">
+                        <div class="form-group">
                             <div class="form-group">
                                 <label>Content</label>
                                 <textarea name="content" class="form-control"
                                           placeholder="Enter description"></textarea>
+                                @error('content')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group">
@@ -91,6 +98,9 @@
                                 <option value="{{$category->id}}">{{$category->title}}</option>
                                 @endforeach
                             </select>
+                            @error('category_id')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Multiple</label>
@@ -99,7 +109,12 @@
                                 <option value="{{$tag->id}}">{{$tag->title}}</option>
                                 @endforeach
                             </select>
+                            @error('tag_ids')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+
                         </div>
+
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Create</button>
                         </div>
