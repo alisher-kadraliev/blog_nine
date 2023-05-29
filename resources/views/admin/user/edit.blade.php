@@ -53,7 +53,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Category</h1>
+                        <h1 class="m-0">User</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -69,14 +69,37 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="card card-primary col-4">
-                    <form action="{{route('admin.category.update', $category->id)}}" method="post">
+                    <form action="{{route('admin.user.update', $user->id)}}" method="post">
                         @csrf
                         @method('patch')
                         <div class="card-body">
                             <div class="form-group">
-                                <label>Category Title</label>
-                                <input type="text" value="{{$category->title}}" name="title" class="form-control"  placeholder="Enter title">
-
+                                <label>User Title</label>
+                                <input type="text" name="name" class="form-control" value="{{$user->name}}"  placeholder="Enter name">
+                                @error('name')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label>User Email</label>
+                                <input type="email" value="{{$user->email}}" name="email" class="form-control"  placeholder="Enter email">
+                                @error('email')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label> Select role</label>
+                                    <select class="form-control" name="role">
+                                        @foreach($roles as $id => $role)
+                                            <option
+                                                value="{{$id}}" {{$id == $user->role  ? 'selected' : ''}}>{{$role}}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('role')
+                                    <div class="text-danger">{{$message}}</div>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                         <div class="card-footer">

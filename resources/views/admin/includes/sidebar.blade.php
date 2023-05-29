@@ -42,6 +42,15 @@ Home
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.user.index') }}"
+                       class="nav-link  {{Route::currentRouteName() == 'admin.user.index' ? 'active-sidebar-link' : ''}}">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>
+                            Users
+                        </p>
+                    </a>
+                </li>
                 {{--                <li class="nav-item">--}}
                 {{--                    <a href="{{ route('admin.main') }}"--}}
                 {{--                       class="nav-link  {{Route::currentRouteName() == 'admin.main' ? 'active-sidebar-link' : ''}}">--}}

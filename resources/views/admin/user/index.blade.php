@@ -15,18 +15,18 @@
     <!-- Tempusdominus Bootstrap 4 -->
     <link rel="stylesheet"
           href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
-{{--    <!-- iCheck -->--}}
+    {{--    <!-- iCheck -->--}}
     <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
-{{--    <!-- JQVMap -->--}}
+    {{--    <!-- JQVMap -->--}}
     <link rel="stylesheet" href="{{ asset('plugins/jqvmap/jqvmap.min.css') }}">
-{{--    <!-- Theme style -->--}}
+    {{--    <!-- Theme style -->--}}
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-{{--    <!-- overlayScrollbars -->--}}
+    {{--    <!-- overlayScrollbars -->--}}
     <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
-{{--    <!-- Daterange picker -->--}}
+    {{--    <!-- Daterange picker -->--}}
     <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
-{{--    <!-- summernote -->--}}
+    {{--    <!-- summernote -->--}}
     <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -53,7 +53,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Category</h1>
+                        <h1 class="m-0">User</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -68,21 +68,48 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <div class="card card-primary col-4">
-                    <form action="{{route('admin.category.update', $category->id)}}" method="post">
-                        @csrf
-                        @method('patch')
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label>Category Title</label>
-                                <input type="text" value="{{$category->title}}" name="title" class="form-control"  placeholder="Enter title">
+                <a href="{{route('admin.user.create')}}" class="btn btn-primary mb-3">Create User</a>
+                <div class="col-12 p-0">
+                    <div class="card">
 
-                            </div>
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-hover text-nowrap">
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Title</th>
+                                    <th>View</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($users as $user)
+                                    <tr>
+                                        <td>{{$user->id}}</td>
+                                        <td>{{$user->name}}</td>
+                                        <td><a href="{{route('admin.user.show', $user->id)}}"><i
+                                                    class="fas fa-eye"></i></a></td>
+                                        <td><a class="btn btn-success"
+                                               href="{{route('admin.user.edit', $user->id)}}"><i
+                                                    class="fas fa-edit"></i></a></td>
+                                        <td>
+                                            <form action="{{route('admin.user.destroy', $user->id)}}"
+                                                  method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger"><i
+                                                        class="fas fa-trash"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Update</button>
-                        </div>
-                    </form>
+
+                    </div>
+
                 </div>
             </div><!-- /.container-fluid -->
         </section>
@@ -102,8 +129,6 @@
     </aside>
     <!-- /.control-sidebar -->
 </div>
-<!-- ./wrapper -->
-
 <!-- jQuery -->
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
 <!-- jQuery UI 1.11.4 -->

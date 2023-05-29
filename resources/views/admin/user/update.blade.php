@@ -69,14 +69,16 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="card card-primary col-4">
-                    <form action="{{route('admin.category.update', $category->id)}}" method="post">
+                    <form action="{{route('admin.user.update', $user->id)}}" method="post">
                         @csrf
                         @method('patch')
                         <div class="card-body">
                             <div class="form-group">
-                                <label>Category Title</label>
-                                <input type="text" value="{{$category->title}}" name="title" class="form-control"  placeholder="Enter title">
-
+                                <label>Name</label>
+                                <input type="text" name="name" class="form-control"  placeholder="Enter name">
+                                @error('name')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="card-footer">

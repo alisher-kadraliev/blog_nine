@@ -8,12 +8,12 @@
 
 
         </ul>
-{{--        <div class="nav-item ml-auto">--}}
-{{--            <form action="{{route('logout')}}" method="post">--}}
-{{--                @csrf--}}
-{{--                <input type="submit"  class="btn btn-danger" value="Logout">--}}
-{{--            </form>--}}
-{{--        </div>--}}
+        <div class="nav-item ml-auto">
+            <form action="{{route('logout')}}" method="post">
+                @csrf
+                <input type="submit"  class="btn btn-danger" value="Logout">
+            </form>
+        </div>
 
         <!-- Right navbar links -->
     </nav>

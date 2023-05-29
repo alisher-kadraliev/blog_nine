@@ -15,18 +15,18 @@
     <!-- Tempusdominus Bootstrap 4 -->
     <link rel="stylesheet"
           href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
-{{--    <!-- iCheck -->--}}
+    {{--    <!-- iCheck -->--}}
     <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
-{{--    <!-- JQVMap -->--}}
+    {{--    <!-- JQVMap -->--}}
     <link rel="stylesheet" href="{{ asset('plugins/jqvmap/jqvmap.min.css') }}">
-{{--    <!-- Theme style -->--}}
+    {{--    <!-- Theme style -->--}}
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-{{--    <!-- overlayScrollbars -->--}}
+    {{--    <!-- overlayScrollbars -->--}}
     <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
-{{--    <!-- Daterange picker -->--}}
+    {{--    <!-- Daterange picker -->--}}
     <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
-{{--    <!-- summernote -->--}}
+    {{--    <!-- summernote -->--}}
     <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -53,7 +53,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Category</h1>
+                        <h1 class="m-0">user</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -69,18 +69,40 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="card card-primary col-4">
-                    <form action="{{route('admin.category.update', $category->id)}}" method="post">
+                    <form action="{{route('admin.user.store')}}" method="post">
                         @csrf
-                        @method('patch')
                         <div class="card-body">
                             <div class="form-group">
-                                <label>Category Title</label>
-                                <input type="text" value="{{$category->title}}" name="title" class="form-control"  placeholder="Enter title">
-
+                                <label>user Title</label>
+                                <input type="text" name="name" class="form-control" placeholder="Enter name">
+                                @error('name')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
                             </div>
+                            <div class="form-group">
+                                <label>user Email</label>
+                                <input type="email" name="email" class="form-control" placeholder="Enter email">
+                                @error('email')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label> Select role</label>
+                                <select class="form-control" name="role">
+                                    @foreach($roles as $id => $role)
+                                        <option
+                                            value="{{$id}}" {{$id == old('role') ? 'selected' : ''}}>{{$role}}</option>
+                                    @endforeach
+                                </select>
+                                @error('role')
+                                <div class="text-danger">{{$message}}</div>
+                                @enderror
+                            </div>
+
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-primary">Create</button>
                         </div>
                     </form>
                 </div>

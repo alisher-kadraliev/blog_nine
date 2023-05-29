@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,10 +21,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify'=>true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::group(['prefix' => 'admin'], function (){
+Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin','verified']], function (){
     Route::get('/home',[\App\Http\Controllers\MainController::class,'index'])->name('admin.home');
     Route::group(['prefix' => 'categories'], function () {
         Route::get('/',  [CategoryController::class,'index'])->name('admin.category.index');
@@ -53,15 +54,15 @@ Route::group(['prefix' => 'admin'], function (){
         Route::patch('/{post}',  [PostController::class,'update'])->name('admin.post.update');
         Route::delete('/{post}',  [PostController::class,'destroy'])->name('admin.post.destroy');
     });
-//    Route::group(['prefix' => 'users'], function () {
-//        Route::get('/',  [UserController::class,'index'])->name('admin.user.index');
-//        Route::get('/create',  [UserController::class,'create'])->name('admin.user.create');
-//        Route::post('/',  [UserController::class,'store'])->name('admin.user.store');
-//        Route::get('/{user}',  [UserController::class,'show'])->name('admin.user.show');
-//        Route::get('/{user}/edit',  [UserController::class,'edit'])->name('admin.user.edit');
-//        Route::patch('/{user}',  [UserController::class,'update'])->name('admin.user.update');
-//        Route::delete('/{user}',  [UserController::class,'destroy'])->name('admin.user.destroy');
-//    });
+    Route::group(['prefix' => 'users'], function () {
+        Route::get('/',  [UserController::class,'index'])->name('admin.user.index');
+        Route::get('/create',  [UserController::class,'create'])->name('admin.user.create');
+        Route::post('/',  [UserController::class,'store'])->name('admin.user.store');
+        Route::get('/{user}',  [UserController::class,'show'])->name('admin.user.show');
+        Route::get('/{user}/edit',  [UserController::class,'edit'])->name('admin.user.edit');
+        Route::patch('/{user}',  [UserController::class,'update'])->name('admin.user.update');
+        Route::delete('/{user}',  [UserController::class,'destroy'])->name('admin.user.destroy');
+    });
 });
 Route::get('/front', function (){
    return view('front.front');
