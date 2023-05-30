@@ -15,20 +15,21 @@
     <!-- Tempusdominus Bootstrap 4 -->
     <link rel="stylesheet"
           href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
-    {{--    <!-- iCheck -->--}}
+{{--    <!-- iCheck -->--}}
     <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
-    {{--    <!-- JQVMap -->--}}
+{{--    <!-- JQVMap -->--}}
     <link rel="stylesheet" href="{{ asset('plugins/jqvmap/jqvmap.min.css') }}">
-    {{--    <!-- Theme style -->--}}
+{{--    <!-- Theme style -->--}}
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-    {{--    <!-- overlayScrollbars -->--}}
+{{--    <!-- overlayScrollbars -->--}}
     <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
-    {{--    <!-- Daterange picker -->--}}
+{{--    <!-- Daterange picker -->--}}
     <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
-    {{--    <!-- summernote -->--}}
+{{--    <!-- summernote -->--}}
     <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
 </head>
+
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
@@ -40,25 +41,24 @@
 
     <!-- Navbar -->
     <div>
-        @include('admin.navbar.navbar')
+        @include('personal.navbar.navbar')
     </div>
     <!-- /.navbar -->
 
-@include('admin.includes.sidebar')
+    @include('personal.includes.sidebar')
 
-<!-- Content Wrapper. Contains page content -->
+    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">post</h1>
+                        <h1 class="m-0">Like</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{route('admin.home')}}">Home</a></li>
-                            <li class="breadcrumb-item">Posts</li>
+                            <li class="breadcrumb-item"><a href="{{route('personal.home')}}">Home</a></li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -69,49 +69,7 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <a href="{{route('admin.post.create')}}" class="btn btn-primary mb-3">Create post</a>
-                <div class="col-12 p-0">
-                    <div class="card">
 
-                        <div class="card-body table-responsive p-0">
-                            <table class="table table-hover text-nowrap">
-                                <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Title</th>
-                                    <th>View</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($posts as $post)
-                                    <tr>
-                                        <td>{{$post->id}}</td>
-                                        <td>{{$post->title}}</td>
-                                        <td><a href="{{route('admin.post.show', $post->id)}}"><i
-                                                    class="fas fa-eye"></i></a></td>
-                                        <td><a class="btn btn-success"
-                                               href="{{route('admin.post.edit', $post->id)}}"><i
-                                                    class="fas fa-edit"></i></a></td>
-                                        <td>
-                                                                                            <form action="{{route('admin.post.destroy', $post->id)}}"
-                                                  method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger"><i
-                                                        class="fas fa-trash"></i></button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </div>
-
-                </div>
             </div><!-- /.container-fluid -->
         </section>
         <!-- /.content -->
@@ -130,6 +88,8 @@
     </aside>
     <!-- /.control-sidebar -->
 </div>
+<!-- ./wrapper -->
+
 <!-- jQuery -->
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
 <!-- jQuery UI 1.11.4 -->

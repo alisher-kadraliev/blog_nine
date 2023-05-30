@@ -9,7 +9,7 @@
                 <li class="nav-item">
                     <a href="{{ route('admin.home') }}"
                        class="nav-link  {{Route::currentRouteName() == 'admin.home' ? 'active-sidebar-link' : ''}}">
-                        <i class="fas fa-sliders-h"></i>
+                        <i class=" nav-icon fas fa-sliders-h"></i>
                         <p>
 Home
                         </p>

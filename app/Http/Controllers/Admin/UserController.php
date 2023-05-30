@@ -31,8 +31,8 @@ class UserController extends Controller
         $data = $request->validated();
         $password = Str::random(8);
         $data['password'] = Hash::make($password);
-$user =         User::firstOrCreate(['email' => $data['email']], $data);
-        Mail::to($data['email'])->send(new PasswordMail($password)  ) ;
+        $user = User::firstOrCreate(['email' => $data['email']], $data);
+        Mail::to($data['email'])->send(new PasswordMail($password));
         event(new Registered($user));
         return redirect()->route('admin.user.index');
     }
