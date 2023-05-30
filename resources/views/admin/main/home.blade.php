@@ -29,6 +29,7 @@
 {{--    <!-- summernote -->--}}
     <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
 </head>
+
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
@@ -74,14 +75,14 @@
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-{{--                                <h3>{{$data['userCount']}}</h3>--}}
+                                <h3>{{$data['userCount']}}</h3>
 
                                 <p>Users</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-user-circle"></i>
                             </div>
-{{--                            <a href="{{ route('admin.user.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>--}}
+                            <a href="{{ route('admin.user.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -89,14 +90,14 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-{{--                                <h3>{{$data['categoryCount']}}</h3>--}}
+                                <h3>{{$data['categoryCount']}}</h3>
 
                                 <p>Category</p>
                             </div>
                             <div class="icon">
                                 <i class="nav-icon fas fa-stream"></i>
                             </div>
-{{--                            <a href="{{route('admin.category.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>--}}
+                            <a href="{{route('admin.category.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -104,14 +105,14 @@
                         <!-- small box -->
                         <div class="small-box bg-warning">
                             <div class="inner">
-{{--                                <h3>{{$data['tagCount']}}</h3>--}}
+                                <h3>{{$data['tagCount']}}</h3>
 
                                 <p>Tag</p>
                             </div>
                             <div class="icon">
                                 <i class="nav-icon fas fa-tags"></i>
                             </div>
-{{--                            <a href="{{route('admin.tag.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>--}}
+                            <a href="{{route('admin.tag.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -119,14 +120,14 @@
                         <!-- small box -->
                         <div class="small-box bg-danger">
                             <div class="inner">
-{{--                                <h3>{{$data['postCount']}}</h3>--}}
+                                <h3>{{$data['postCount']}}</h3>
 
                                 <p>Post</p>
                             </div>
                             <div class="icon">
                                 <i class="nav-icon fas fa-save"></i>
                             </div>
-{{--                            <a href="{{route('admin.post.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>--}}
+                            <a href="{{route('admin.post.index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->

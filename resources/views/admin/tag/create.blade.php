@@ -58,7 +58,9 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('admin.home')}}">Home</a></li>
-                        </ol>
+                            <li class="breadcrumb-item"><a href="{{route('admin.tag.index')}}">Tag</a></li>
+                            <li class="breadcrumb-item">Create Tag</li>
+                           </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->

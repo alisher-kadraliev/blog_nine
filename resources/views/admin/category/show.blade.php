@@ -53,11 +53,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">tag</h1>
+                        <h1 class="m-0">category</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('admin.home')}}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.category.index')}}">Category</a></li>
+                            <li class="breadcrumb-item">{{$category->title}}</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -68,7 +70,7 @@
         <!-- Main content -->
                 <section class="content">
                     <div class="container-fluid">
-                        <a href="{{route('admin.tag.index')}}" class="btn btn-primary mb-3">Back </a>
+                        <a href="{{route('admin.category.index')}}" class="btn btn-primary mb-3">Back </a>
                         <div class="col-5 p-0">
                             <div class="card">
 
@@ -81,8 +83,8 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                     <td>{{$tag->id}}</td>
-                                     <td>{{$tag->title}}</td>
+                                     <td>{{$category->id}}</td>
+                                     <td>{{$category->title}}</td>
                                         </tbody>
                                     </table>
                                 </div>

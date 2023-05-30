@@ -9,7 +9,7 @@
                 <li class="nav-item">
                     <a href="{{ route('admin.home') }}"
                        class="nav-link  {{Route::currentRouteName() == 'admin.home' ? 'active-sidebar-link' : ''}}">
-                        <i class="fas fa-sliders-h"></i>
+                        <i class=" nav-icon fas fa-sliders-h"></i>
                         <p>
 Home
                         </p>
@@ -39,6 +39,15 @@ Home
                         <i class="nav-icon fas fa-poo-storm"></i>
                         <p>
                             Post
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.user.index') }}"
+                       class="nav-link  {{Route::currentRouteName() == 'admin.user.index' ? 'active-sidebar-link' : ''}}">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>
+                            Users
                         </p>
                     </a>
                 </li>

@@ -58,6 +58,8 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{route('admin.home')}}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.category.index')}}">Category</a></li>
+                            <li class="breadcrumb-item">Edit Category</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -75,7 +77,8 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Category Title</label>
-                                <input type="text" name="title" class="form-control"  placeholder="Enter title">
+                                <input type="text" value="{{$category->title}}" name="title" class="form-control"  placeholder="Enter title">
+
                             </div>
                         </div>
                         <div class="card-footer">
