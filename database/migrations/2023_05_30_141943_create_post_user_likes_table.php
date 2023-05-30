@@ -16,8 +16,13 @@ return new class extends Migration
             $table->unsignedBigInteger('post_id');
             $table->unsignedBigInteger('user_id');
 
-            $table->index('post_id', 'post_user_likes_post_idx');
-            $table->foreign('post_id', 'post_user_likes_post_fk')->on('posts')->references('id');
+            $table->index('post_id', 'pul_post_idx');
+            $table->foreign('post_id', 'pul_post_fk ')->on('posts')->references('id');
+
+            $table->index('user_id', 'pul_user_idx');
+            $table->foreign('user_id', 'pul_user_fk')->on('users')->references('id');
+
+
             $table->timestamps();
 
         });
