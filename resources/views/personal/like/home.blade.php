@@ -69,7 +69,42 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
+                <div class="card">
 
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Title</th>
+                                <th>View</th>
+                                <th>Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($posts as $post)
+                                <tr>
+                                    <td>{{$post->id}}</td>
+                                    <td>{{$post->title}}</td>
+                                    <td><a href="{{route('admin.post.show', $post->id)}}"><i
+                                                class="fas fa-eye"></i></a></td>
+
+                                    <td>
+                                        <form action="{{route('personal.like.delete', $post->id)}}"
+                                              method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger"><i
+                                                    class="fas fa-trash"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
             </div><!-- /.container-fluid -->
         </section>
         <!-- /.content -->

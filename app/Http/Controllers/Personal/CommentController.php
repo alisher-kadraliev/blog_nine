@@ -8,7 +8,12 @@ class CommentController extends Controller
 {
     public function index()
     {
+$comments = auth()->user()->comments;
+        return view('personal.comment.home', compact('comments'));
+    }
 
-        return view('personal.comment.home');
+    public function edit()
+    {
+
     }
 }
