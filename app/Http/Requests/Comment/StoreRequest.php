@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Post;
+namespace App\Http\Requests\Comment;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -22,15 +22,7 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|max:255|string',
-            'content' => 'required|string',
-            'preview-image' => 'required|file',
-            'main-image' => 'required|file',
-            'category_id' => 'required|exists:categories,id',
-            'tag_ids' => 'nullable|array',
-            'tag_ids.*' => 'nullable|nullable|exists:tags,id',
-
-
+            'message' => 'required|max:255|string',
         ];
     }
 }

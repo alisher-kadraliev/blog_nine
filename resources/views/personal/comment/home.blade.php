@@ -58,6 +58,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb  float-sm-right ">
                             <li class="breadcrumb-item "><a href="{{route('personal.home')}}">Home</a></li>
+                            <li class="breadcrumb-item ">Comments</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -85,18 +86,18 @@
                                 <tr>
                                     <td>{{$comment->id}}</td>
                                     <td>{{$comment->message}}</td>
-{{--                                    <td><a class="btn btn-success"--}}
-{{--                                           href="{{route('admin.comment.edit', $comment->id)}}"><i--}}
-{{--                                                class="fas fa-edit"></i></a></td>--}}
+                                    <td><a class="btn btn-success"
+                                           href="{{route('personal.comment.edit', $comment->id)}}"><i
+                                                class="fas fa-edit"></i></a></td>
 
-{{--                                    <td>--}}
-{{--                                        <form action="{{route('personal.like.delete', $comment->id)}}"--}}
-{{--                                              method="POST">--}}
-{{--                                            @csrf--}}
-{{--                                            @method('DELETE')--}}
-{{--                                            <button type="submit" class="btn btn-danger"><i--}}
-{{--                                                    class="fas fa-trash"></i></button>--}}
-{{--                                        </form>--}}
+                                    <td>
+                                        <form action="{{route('personal.comment.delete', $comment->id)}}"
+                                              method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger"><i
+                                                    class="fas fa-trash"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

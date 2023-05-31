@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\FrontController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\Personal\LikeController;
 use App\Http\Controllers\Personal\CommentController;
@@ -32,10 +33,13 @@ Route::group(['prefix' => 'personal', 'middleware' => ['auth','verified']], func
 
     Route::group(['prefix' => 'like'], function () {
         Route::get('/', [LikeController::class, 'index'])->name('personal.like.index');
-        Route::delete('/{post}', [LikeController::class, 'delete'])->name('personal.like.delete');
+//        Route::delete('/{post}', [LikeController::class, 'delete'])->name('personal.like.delete');
     });
     Route::group(['prefix' => 'comment'], function () {
         Route::get('/', [CommentController::class, 'index'])->name('personal.comment.index');
+        Route::get('/{comment}/edit', [CommentController::class, 'edit'])->name('personal.comment.edit');
+        Route::patch('/{comment}', [CommentController::class, 'update'])->name('personal.comment.update');
+        Route::delete('/{comment}', [CommentController::class, 'delete'])->name('personal.comment.delete');
     });
 
 });
@@ -81,7 +85,5 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin','verified']],
         Route::delete('/{user}',  [UserController::class,'destroy'])->name('admin.user.destroy');
     });
 });
-Route::get('/', function (){
-   return view('front.front');
-});
+Route::get('/', [FrontController::class,'index'])->name('front');
 
