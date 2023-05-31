@@ -8,6 +8,7 @@ use App\Http\Requests\Post\UpdateRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -28,13 +29,20 @@ class PostController extends Controller
 
     public function store(StoreRequest $request)
     {
-        $data = $request->validated();
-        $tagIds = $data['tag_ids'];
-        unset($data['tag_ids']);
+        try {
+            $data = $request->validated();
+            $tagIds = $data['tag_ids'];
+            unset($data['tag_ids']);
 
-        $post = Post::firstOrCreate($data);
-        $post->tags()->attach($tagIds);
-        return redirect()->route('admin.post.index');
+
+            $data['preview-image'] = Storage::put('/images', $data['preview-image']);
+            $data['main-image'] = Storage::put('/images', $data['main-image']);
+            $post = Post::firstOrCreate($data);
+            $post->tags()->attach($tagIds);
+            return redirect()->route('admin.post.index');
+        } catch (\Exception $exception) {
+            abort(404);
+        }
     }
 
     public function show(Post $post)

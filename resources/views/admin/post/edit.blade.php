@@ -94,6 +94,42 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label for="exampleInputFile">Change preview image</label>
+                                <div class="w-25">
+                                    <img src="{{$post->preview-image}}" alt="preview-image" >
+                                </div>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="preview-image">
+                                        @error('preview-image')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                        <label class="custom-file-label">Choose file</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">Upload preview image</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Change main image</label>
+                                <div class="w-25">
+                                    <img src="{{$post->image}}" alt="main-image" >
+                                </div>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="main-image">
+                                        @error('main-image')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                        <label class="custom-file-label">Choose file</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">Upload main image</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label>Select Category</label>
                                 <select name="category_id" class="form-control">
                                     @foreach($categories as $category)
@@ -110,7 +146,7 @@
                                 <select name="tag_ids[]" class="form-control select2" multiple="multiple" data-action="Select tag" style="width: 100%">
                                     @foreach($tags as $tag)
                                         <option
-                                            {{is_array($post->tags->pluck('id')->toArray()) && in_array($tag->id, $post->tags->pluck('id')->pluck('id')->toArray() ) ? 'selected' : ''}}
+                                            {{ is_array($post->tags->pluck('id')) &&  in_array($tag->id, $post->tags->pluck('id')) ? ' selected' : '' }}
                                             value="{{$tag->id}}">{{$tag->title}}</option>
                                     @endforeach
                                 </select>
