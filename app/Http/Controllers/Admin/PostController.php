@@ -35,8 +35,8 @@ class PostController extends Controller
             unset($data['tag_ids']);
 
 
-            $data['preview-image'] = Storage::put('/images', $data['preview-image']);
-            $data['main-image'] = Storage::put('/images', $data['main-image']);
+            $data['preview_image'] = Storage::disk('public')->put('/images', $data['preview_image']);
+            $data['main_image'] = Storage::disk('public')->put('/images', $data['main_image']);
             $post = Post::firstOrCreate($data);
             $post->tags()->attach($tagIds);
             return redirect()->route('admin.post.index');
@@ -64,7 +64,10 @@ class PostController extends Controller
         $data = $request->validated();
         $tagsIds = $data['tag_ids'];
         unset($data['tag_ids']);
-        $post = Post::firstOrCreate($data);
+
+        $data['preview_image'] = Storage::disk('public')->put('/images', $data['preview_image']);
+        $data['main_image'] = Storage::disk('public')->put('/images', $data['main_image']);
+        $post->update($data);
         $post->tags()->sync($tagsIds);
 
         return redirect()->route('admin.post.show', compact('post'));

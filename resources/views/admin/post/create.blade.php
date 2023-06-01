@@ -70,7 +70,7 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <div class="card card-primary col-4">
+                <div class="card card-primary col-7">
                     <form action="{{route('admin.post.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
@@ -98,7 +98,7 @@
                                 <label for="exampleInputFile">File input</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="preview-image">
+                                        <input type="file" class="custom-file-input" name="preview_image">
                                         @error('preview-image')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
@@ -113,7 +113,7 @@
                                 <label>File input</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="main-image">
+                                        <input type="file" class="custom-file-input" name="main_image">
                                         @error('main-image')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
