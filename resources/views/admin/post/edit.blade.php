@@ -115,7 +115,7 @@
                             <div class="form-group">
                                 <label>Change main image</label>
                                 <div class="w-50">
-                                    <img src="{{url('storage/' . $post->main_image)}}" alt="main-image" class="w-75 my-4">
+                                    <img src="{{url('storage/' . $post->main_image)}}" alt="main_image" class="w-75 my-4">
                                 </div>
                                 <div class="input-group">
                                     <div class="custom-file">
