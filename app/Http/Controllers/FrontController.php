@@ -9,7 +9,6 @@ class FrontController extends Controller
 {
     public function index()
     {
-        $posts = Post::paginate(6);
-        return view('front.front', compact('posts'));
+        return redirect()->route('post.index');
     }
 }

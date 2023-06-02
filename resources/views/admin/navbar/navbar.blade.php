@@ -14,6 +14,10 @@
                 <input type="submit"  class="btn btn-danger" value="Logout">
             </form>
         </div>
+        <div class="nav-item mx-3">
+            <a href="{{route('front.index')}}" class="btn btn-success">Main Page</a>
+        </div>
+
 
         <!-- Right navbar links -->
     </nav>

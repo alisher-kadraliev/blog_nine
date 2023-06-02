@@ -70,14 +70,19 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <div class="card card-primary col-4">
-                    <form action="{{route('admin.post.update', $post->id)}}" method="post">
+                <div class="card card-primary col-7">
+                    <form action="{{route('admin.post.update', $post->id)}}" enctype="multipart/form-data" method="post">
                         @csrf
                         @method('patch')
                         <div class="card-body">
                             <div class="form-group">
-                                <label>post Title</label>
-                                <input type="text" name="title" class="form-control"  placeholder="Enter title">
+                                <label>Title
+                                    <input type="text" name="title" class="form-control" placeholder="Enter title"
+                                           value="{{ old('title') ?? $post->title }}">
+                                </label>
+                                @error('title')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label>post Content</label>
@@ -88,26 +93,65 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>Select Category</label>
-                                <select name="category_id" class="form-control">
-                                    @foreach($categories as $category)
-                                        <option value="{{$category->id}}"
-                                            {{$category->id == $post->category_id ? 'selected' : ''}}>{{$category->title}}</option>
-                                    @endforeach
-                                </select>
+                                <label for="exampleInputFile">Change preview image</label>
+                                <div class="w-50">
+                                    <img src="{{url('storage/' . $post->preview_image)}}" alt="preview-image" class="w-75 my-4">
+                                </div>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="preview_image">
+                                        @error('preview_image')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                        <label class="custom-file-label">Choose file</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">Upload preview image</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Change main image</label>
+                                <div class="w-50">
+                                    <img src="{{url('storage/' . $post->main_image)}}" alt="main-image" class="w-75 my-4">
+                                </div>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="main_image">
+                                        @error('main_image')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                        <label class="custom-file-label">Choose file</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">Upload main image</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Select Category
+                                    <select name="category_id" class="form-control">
+                                        @foreach($categories as $category)
+                                            <option value="{{$category->id}}"
+                                                {{$category->id == $post->category_id ? 'selected' : ''}}>{{$category->title}}</option>
+                                        @endforeach
+                                    </select>
+                                </label>
                                 @error('category_id')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>Select Tag</label>
-                                <select name="tag_ids[]" class="form-control select2" multiple="multiple" data-action="Select tag" style="width: 100%">
-                                    @foreach($tags as $tag)
-                                        <option
-                                            {{is_array($post->tags->pluck('id')->toArray()) && in_array($tag->id, $post->tags->pluck('id')->pluck('id')->toArray() ) ? 'selected' : ''}}
-                                            value="{{$tag->id}}">{{$tag->title}}</option>
-                                    @endforeach
-                                </select>
+
+                                <label>Select Tag
+                                    <select name="tag_ids[]" class="form-control select2" multiple="multiple" data-action="Select tag" style="width: 100%">
+                                        @foreach($tags as $tag)
+                                            <option
+                                                {{ is_array($post->tags->pluck('id')->toArray()) &&  in_array($tag->id, $post->tags->pluck('id')->toArray()) ? ' selected' : '' }}
+                                                value="{{$tag->id}}">{{$tag->title}}</option>
+                                        @endforeach
+                                    </select>
+                                </label>
                                 @error('tag_ids[]')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
